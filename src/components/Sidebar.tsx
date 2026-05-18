@@ -12,7 +12,7 @@ export default function Sidebar({ selectedCategory, onSelectCategory }: SidebarP
     <div className="sidebar">
       <div className="sidebar-inner">
         <div className="logo">
-          <img className="logo-mark" src="/tinypearlstudio-logo.png" alt="Tiny Pearl Studio" />
+          <img className="logo-mark" src={`${import.meta.env.BASE_URL}tinypearlstudio-logo.png`} alt="Tiny Pearl Studio" />
           <span className="logo-text">Tiny Pearl Studio</span>
         </div>
         <ul className="nav-list">

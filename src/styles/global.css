@@ -45,8 +45,9 @@ body {
 
 .logo {
   display: flex;
-  align-items: center;
-  gap: 16px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
   cursor: pointer;
   margin-bottom: 60px;
 }
