@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import type { Token } from '../types';
 import ColorSwatch from './ColorSwatch';
 
@@ -7,6 +8,15 @@ interface DetailPanelProps {
 }
 
 export default function DetailPanel({ token, onExport }: DetailPanelProps) {
+  const [copiedValue, setCopiedValue] = useState(false);
+
+  const handleCopyValue = async (text: string) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopiedValue(true);
+      setTimeout(() => setCopiedValue(false), 2000);
+    } catch {}
+  };
   if (!token) {
     return (
       <div className="details-panel">
@@ -45,7 +55,10 @@ export default function DetailPanel({ token, onExport }: DetailPanelProps) {
         <span className="meta-label">Current Value</span>
         <span className="meta-value" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
           {token.$type === 'color' && <ColorSwatch color={token.$value} name={token.name} />}
-          {token.$value}
+          <span style={{ flex: 1 }}>{token.$value}</span>
+          <button className="copy-value-btn" onClick={() => handleCopyValue(token.$value)} aria-label="Copy value">
+            {copiedValue ? 'Copied' : 'Copy'}
+          </button>
         </span>
       </div>
 
