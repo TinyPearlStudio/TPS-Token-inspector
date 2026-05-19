@@ -24,6 +24,11 @@ export default function DetailPanel({ token, onExport }: DetailPanelProps) {
       <div className="details-header">
         <h2 className="details-title">{token.name}</h2>
         <p className="details-desc">{token.description}</p>
+        {token.$type === 'typography' && !token.$value.endsWith('px') && (
+          <div className="font-sample" style={{ fontFamily: token.$value }}>
+            The quick brown fox jumps over the lazy dog.
+          </div>
+        )}
       </div>
 
       <div className="meta-section">
